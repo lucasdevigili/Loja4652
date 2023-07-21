@@ -26,16 +26,26 @@ export const Navbar = styled.div`
 }
 
 #nav {
-    color: ${colors.lightBlack};
-    font-size: 20px;
     width: 30%;
     display: flex;
     justify-content: space-between;
-
 }
 
 .dash {
-    border-right: 1px solid ${colors.lightBlack};
+    border-right: 1px solid ${colors.lightBlack}
+}
+
+#nav button {
+    height: 30px;
+    width: 70px;
+    color: ${colors.lightBlack};
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+#nav button:hover {
+    color: white;
 }
 
 #nav li{
@@ -59,5 +69,12 @@ export const Navbar = styled.div`
     border: transparent;
     font-size: 20px;
     color: ${colors.darkBlue};
+    transition: 0.50s;
+}
+
+#buttons button:hover {
+    color: white;
+    background-color: ${colors.lightBlack};
+    transition: 0.50s;
 }
 `
