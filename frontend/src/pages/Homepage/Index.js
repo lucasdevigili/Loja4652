@@ -3,9 +3,7 @@ import './index.css';
 import { Navbar } from "../../components/Navbar/index";
 import { Carousel } from "../../components/Carousel/index";
 import { Card } from "../Catalog/index";
-import { Contact } from "../../components/Contact/Index";
-
-const LIMIT = 12;
+import { Contact } from "../../components/Contact/index";
 
 export function Homepage() {
     return (
