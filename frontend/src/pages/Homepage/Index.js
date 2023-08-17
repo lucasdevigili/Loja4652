@@ -59,14 +59,9 @@ export function Homepage() {
                     </div>
                     <div id="text">
                         <div id="p">
-                            <p id="email">E-mail:</p>
-                            <p id="instagram">Instagram:</p>
-                            <p id="cellphone">Telefone:</p>
-                        </div>
-                        <div id="span">
-                            <span className="email">distrito4652@gmail.com</span>
-                            <span className="instagram">@interact4652</span>
-                            <span className="cellphone">(47)9262-8160</span>
+                            <p id="email">E-mail: <span className="email">distrito4652@gmail.com</span></p>
+                            <p id="instagram">Instagram: <span className="instagram">@interact4652</span></p>
+                            <p id="cellphone">Telefone: <span className="cellphone">(47)9262-8160</span></p>
                         </div>
                     </div>
                 </div>
