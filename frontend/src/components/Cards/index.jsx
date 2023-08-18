@@ -15,6 +15,7 @@ export const Cards = styled.div`
         height: 30%;
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: space-between;
     }
 
@@ -27,7 +28,6 @@ export const Cards = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
     }
 
     .oldPrice {
@@ -47,6 +47,10 @@ export const Cards = styled.div`
 
     #price, .oldPrice, p{
         width: 70%;
+    }
+
+    #price li {
+        list-style-type: none;
     }
 
     #name {

@@ -1,8 +1,9 @@
 import React from "react";
 import './index.css';
 import { Cards } from "../../components/Cards";
+// import axios from "axios";
 
-export function Card() {
+const Card = ({ products }) =>{
     return (
         <>
             <Cards>
@@ -11,9 +12,19 @@ export function Card() {
                 </div>
                 <div id="cardText">
                     <div id="price">
-                        <span className="oldPrice">R$60,00</span>
-                        <p className="price">R$ 45,00</p>
-                        <p className="name">Nome do produto</p>
+                        {products && products.map((item, i) => (
+                            <ul key={i} id="ulCard">
+                                <li className="liCard">
+                                    <span className="oldPrice">{item.oldPrice}</span>
+                                </li>
+                                <li className="liCard">
+                                    <p className="price">{item.price}</p>
+                                </li>
+                                <li className="liCard">
+                                    <p className="name">{item.name}</p>
+                                </li>
+                            </ul>
+                        ))}
                     </div>
                     <div id="name">
                     </div>
@@ -25,3 +36,5 @@ export function Card() {
         </>
     );
 }
+
+export default Card;
