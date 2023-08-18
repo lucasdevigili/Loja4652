@@ -2,10 +2,28 @@ import React from "react";
 import './index.css';
 import { Navbar } from "../../components/Navbar/index";
 import { Carousel } from "../../components/Carousel/index";
-import { Card } from "../Catalog/index";
+import Card from "../Catalog/index.js";
 import { Contact } from "../../components/Contact/index";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function Homepage() {
+    const [products, setProducts] = useState([]);
+
+    const getProducts = async () => {
+        try {
+            const res = await axios.get("http://localhost:8800/products");
+            setProducts(res.data);
+        } catch (error) {
+            console.log(error);
+            //TODO: console
+        }
+    };
+
+    useEffect(() => {
+        getProducts();
+    }, [setProducts]);
+
     return (
         <>
             <Navbar>
@@ -33,24 +51,19 @@ export function Homepage() {
                 </div>
             </Carousel>
             <section id="catalog">
-                <div id="cardContainer">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                </div>
+                {
+                    products.length > 0 ? (
+                        <div id="cardContainer">
+                            {
+                                products.map((product) => (
+                                    <Card key={product.id} products={products} />
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <p>Não ha produtos</p>
+                    )
+                }
             </section>
             <Contact>
                 <div id="contactContainer">
@@ -69,3 +82,5 @@ export function Homepage() {
         </>
     );
 }
+
+export default Homepage;
