@@ -3,7 +3,9 @@ import './index.css';
 import { Cards } from "../../components/Cards";
 // import axios from "axios";
 
-const Card = ({ products }) =>{
+function Card({ name, price, oldPrice}) {
+
+   
     return (
         <>
             <Cards>
@@ -12,21 +14,15 @@ const Card = ({ products }) =>{
                 </div>
                 <div id="cardText">
                     <div id="price">
-                        {products && products.map((item, i) => (
-                            <ul key={i} id="ulCard">
-                                <li className="liCard">
-                                    <span className="oldPrice">{item.oldPrice}</span>
-                                </li>
-                                <li className="liCard">
-                                    <p className="price">{item.price}</p>
-                                </li>
-                                <li className="liCard">
-                                    <p className="name">{item.name}</p>
-                                </li>
-                            </ul>
-                        ))}
-                    </div>
-                    <div id="name">
+                        {
+                            oldPrice > 0 ? (
+                                <span className="oldPrice">R${oldPrice}</span>
+                            ) : (
+                                <span />
+                            )
+                        }
+                        <p className="price">R${price}</p>
+                        <p className="name">{name}</p>
                     </div>
                     <div id="cardButton">
                         <button className="cardButton">Comprar</button>
@@ -34,7 +30,6 @@ const Card = ({ products }) =>{
                 </div>
             </Cards>
         </>
-    );
+    );    
 }
-
-export default Card;
+export default Card

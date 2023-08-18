@@ -12,7 +12,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     width: 95%; 
-    height: 980px;
+    height: auto;
     gap: 20px;
     display: flex;
     flex-wrap: wrap;

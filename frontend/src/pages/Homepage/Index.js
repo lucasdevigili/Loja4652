@@ -2,12 +2,12 @@ import React from "react";
 import './index.css';
 import { Navbar } from "../../components/Navbar/index";
 import { Carousel } from "../../components/Carousel/index";
-import Card from "../Catalog/index.js";
+import Card from "../Catalog/index";
 import { Contact } from "../../components/Contact/index";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export function Homepage() {
+function Homepage() {
     const [products, setProducts] = useState([]);
 
     const getProducts = async () => {
@@ -33,9 +33,14 @@ export function Homepage() {
                 <div id="nav">
                     <ul>
                         <li className="dash">
-                            <button>Home</button></li>
-                        <li className="dash"><button>Catálogo</button></li>
-                        <li><button>Contato</button></li>
+                            <a>Home</a>
+                        </li>
+                        <li className="dash">
+                            <a href="#catalog">Catálogo</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contato</a>
+                        </li>
                     </ul>
                 </div>
                 <div id="buttons">
@@ -56,7 +61,12 @@ export function Homepage() {
                         <div id="cardContainer">
                             {
                                 products.map((product) => (
-                                    <Card key={product.id} products={products} />
+                                    <Card
+                                        key={product.id}
+                                        name={product.name}
+                                        oldPrice={product.oldPrice}
+                                        price={product.price}
+                                    />
                                 ))
                             }
                         </div>
@@ -65,7 +75,7 @@ export function Homepage() {
                     )
                 }
             </section>
-            <Contact>
+            <Contact id="contact">
                 <div id="contactContainer">
                     <div id="contactTitle">
                         <h3>Informações de contato:</h3>

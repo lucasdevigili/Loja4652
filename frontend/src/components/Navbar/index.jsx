@@ -35,16 +35,17 @@ export const Navbar = styled.div`
     border-right: 1px solid ${colors.lightBlack}
 }
 
-#nav button {
+#nav a{
     height: 30px;
     width: 70px;
     color: ${colors.lightBlack};
     font-size: 20px;
     background-color: transparent;
     border: none;
+    text-decoration: none;
 }
 
-#nav button:hover {
+#nav a:hover {
     color: white;
 }
 
