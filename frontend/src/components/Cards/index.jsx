@@ -3,7 +3,7 @@ import colors from '../../themes/colors';
 
 export const Cards = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Source+Sans+Pro&display=swap');
-    height: 480px;
+    height: 513px;
     width: 310px;
     display: flex;
     flex-direction: column;
@@ -24,6 +24,10 @@ export const Cards = styled.div`
         justify-content: center;
     }
 
+    #cardImg {
+        padding-top: 5px;
+    }
+
     #price, .name {
         display: flex;
         flex-direction: column;
@@ -35,6 +39,7 @@ export const Cards = styled.div`
         font-weight: 700;
         font-size: 20px;
         color: ${colors.lightGrey};
+        text-decoration: line-through 2px black;
     }
 
 
@@ -47,10 +52,6 @@ export const Cards = styled.div`
 
     #price, .oldPrice, p{
         width: 70%;
-    }
-
-    #price li {
-        list-style-type: none;
     }
 
     #name {
