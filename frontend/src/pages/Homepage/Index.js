@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './index.css';
 import { Navbar } from "../../components/Navbar/index";
 import { Carousel } from "../../components/Carousel/index";
-import Card from "../Catalog/index";
+import Card from "../Catalog/Index";
 import { Contact } from "../../components/Contact/index";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -33,7 +34,7 @@ function Homepage() {
                 <div id="nav">
                     <ul>
                         <li className="dash">
-                            <a>Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li className="dash">
                             <a href="#catalog">Catálogo</a>
@@ -44,8 +45,8 @@ function Homepage() {
                     </ul>
                 </div>
                 <div id="buttons">
-                    <button>Entrar</button>
-                    <button>Cadastrar</button>
+                    <Link to="" className="link">Entrar</Link>
+                    <Link to="/SignUp" className="link">Cadastrar</Link>
                 </div>
             </Navbar>
             <Carousel>

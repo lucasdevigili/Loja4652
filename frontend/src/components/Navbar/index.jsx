@@ -63,17 +63,25 @@ export const Navbar = styled.div`
     justify-content: space-evenly
 }
 
-#buttons button {
+#buttons .link{
     height: 6vh;
     width: 10vw;
     border-radius: 50px;
     border: transparent;
     font-size: 20px;
     color: ${colors.darkBlue};
+    background-color: #f0f0f0;
     transition: 0.50s;
+    text-decoration: none;
 }
 
-#buttons button:hover {
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#buttons .link:hover {
     color: white;
     background-color: ${colors.lightBlack};
     transition: 0.50s;
