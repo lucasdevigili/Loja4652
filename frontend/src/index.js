@@ -6,7 +6,9 @@ import App from './App';
 const root = document.getElementById('root');
 render(
   <React.StrictMode>
-    <App />
+    {/* <AuthContextProvider> */}
+      <App />
+    {/* </ AuthContextProvider> */}
   </React.StrictMode>,
   root
 );
