@@ -17,13 +17,12 @@ function Homepage() {
             setProducts(res.data);
         } catch (error) {
             console.log(error);
-            //TODO: console
         }
     };
 
     useEffect(() => {
         getProducts();
-    }, [setProducts]);
+    }, []);
 
     return (
         <>
@@ -45,7 +44,7 @@ function Homepage() {
                     </ul>
                 </div>
                 <div id="buttons">
-                    <Link to="" className="link">Entrar</Link>
+                    <Link to="/SignIn" className="link">Entrar</Link>
                     <Link to="/SignUp" className="link">Cadastrar</Link>
                 </div>
             </Navbar>
@@ -62,17 +61,21 @@ function Homepage() {
                         <div id="cardContainer">
                             {
                                 products.map((product) => (
-                                    <Card
-                                        key={product.id}
-                                        name={product.name}
-                                        oldPrice={product.oldPrice}
-                                        price={product.price}
-                                    />
+                                        <Card
+                                            id={product.id}
+                                            name={product.name}
+                                            price={product.price}
+                                            oldPrice={product.oldPrice}
+                                            productPic={product.productPic}
+                                            discount={product.disc}
+                                            size={product.size}
+                                            count={product.count}
+                                        />
                                 ))
                             }
                         </div>
                     ) : (
-                        <p>Não ha produtos</p>
+                        <p>Não há produtos</p>
                     )
                 }
             </section>

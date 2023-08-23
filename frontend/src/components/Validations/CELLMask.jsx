@@ -18,6 +18,8 @@ const CELLMask = ({ value, onChange }) => {
           value={value}
           onChange={handleChange}
           className='input'
+          maxLength={11}
+          minLength={11}
         />
       );
     };

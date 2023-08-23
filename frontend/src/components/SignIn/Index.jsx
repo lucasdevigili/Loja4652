@@ -1,18 +1,19 @@
 import styled from "styled-components"
 import colors from "../../themes/colors"
 
-export const SignUpContainer = styled.div`
+export const SignInContainer = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Source+Sans+Pro&display=swap');
     height: 100vh;
     background-color: ${colors.lightBlue};
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     #modal {
         height: 85%;
-        width: 53%;
+        width: 43%;
         background-color: white;
+        color: #000000;
         border-radius: 75px;
         display: flex;
         justify-content: center;
@@ -37,7 +38,7 @@ export const SignUpContainer = styled.div`
         font-size: 40px;
         font-style: normal;
         font-weight: 700;
-        letter-spacing: 5.2px;
+        letter-spacing: 3.2px;
     }
 
     #form {
@@ -54,26 +55,19 @@ export const SignUpContainer = styled.div`
 
     #formLineOne,
     #formLineTwo,
-    #formLineThree,
     #formLineFour {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
 
-    #name,
-    #surname,
-    #cpf,
-    #date,
-    #email,
-    #cellphone,
-    #password,
-    #confirm {
+    #formLineThree {
         display: flex;
-        flex-direction: column;
+        justify-content: flex-end
     }
 
     .input {
-        width: 290px;
+        width: 100%;
         height: 48px;
         border-radius: 10px;
         border: 2px solid #A3A3A3;
@@ -106,9 +100,23 @@ export const SignUpContainer = styled.div`
         justify-content: space-evenly;
     }
 
-    #buttons button, a{
+    a {
+        text-decoration: none;
+        color: currentColor;
+        font-family: Rubik;
+    }
+
+    #formLineFour span {
+        font-family: Rubik;
+    }
+
+    .signUpSpan {
+        color: #0000ff;
+    }
+
+    #buttons button, .cancel{
         height: 6vh;
-        width: 16vw;
+        width: 13vw;
         border-radius: 50px;
         border: 2px solid #000;
         color: ${colors.darkBlue};
@@ -119,10 +127,10 @@ export const SignUpContainer = styled.div`
         cursor: pointer;
     }
 
-    #buttons button, a{
+    #buttons, .cancel {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
     }
 
     .confirm { 
@@ -138,5 +146,4 @@ export const SignUpContainer = styled.div`
         color: white;
         background-color: ${colors.red};
     }
-
 `

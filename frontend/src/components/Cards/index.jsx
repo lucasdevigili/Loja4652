@@ -71,5 +71,10 @@ export const Cards = styled.div`
         border: transparent;
         font-size: 20px;
         background-color: ${colors.yellow};
+        cursor: pointer;
+    }
+
+    .cardButton:hover {
+        border: 2px solid ${colors.darkBlue};
     }
 `

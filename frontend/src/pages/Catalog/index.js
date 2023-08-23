@@ -1,11 +1,9 @@
 import React from "react";
 import './index.css';
 import { Cards } from "../../components/Cards";
-// import axios from "axios";
+import {Link} from "react-router-dom"
 
-function Card({ name, price, oldPrice}) {
-
-   
+function Card({ name, price, oldPrice, id}) {  
     return (
         <>
             <Cards>
@@ -24,8 +22,8 @@ function Card({ name, price, oldPrice}) {
                         <p className="price">R${price}</p>
                         <p className="name">{name}</p>
                     </div>
-                    <div id="cardButton">
-                        <button className="cardButton">Comprar</button>
+                    <div id="cardButton" >
+                        <Link className="cardButton" to={"/product/" + id}>Comprar</Link>
                     </div>
                 </div>
             </Cards>
