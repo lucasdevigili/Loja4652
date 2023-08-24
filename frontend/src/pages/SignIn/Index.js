@@ -1,4 +1,3 @@
-//import  from "react";
 import {Link} from "react-router-dom"
 import { SignInContainer } from "../../components/SignIn/Index";
 
@@ -18,7 +17,6 @@ function SignIn() {
                                     type="text"
                                     name="email"
                                     className="input"
-                                    //value={email}
                                 />
                             </div>
                             <div id="formLineTwo">
@@ -27,7 +25,6 @@ function SignIn() {
                                     type="password"
                                     name="senha"
                                     className="input"
-                                    //value={password}
                                 />
                                 <span className="span">E-mail ou senha incorreta</span>
                             </div>

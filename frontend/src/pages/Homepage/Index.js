@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './index.css';
-import { Navbar } from "../../components/Navbar/index";
-import { Carousel } from "../../components/Carousel/index";
+import { Navbar } from "../../components/Navbar/Index";
+import { Carousel } from "../../components/Carousel/Index";
 import Card from "../Catalog/Index";
-import { Contact } from "../../components/Contact/index";
+import { Contact } from "../../components/Contact/Index";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 function Homepage() {
     const [products, setProducts] = useState([]);
@@ -54,30 +53,27 @@ function Homepage() {
                         <img src="http://via.placeholder.com/1300x460" alt="" className="imgCarrousel" />
                     </div>
                 </div>
-            </Carousel>
+           </Carousel>
             <section id="catalog">
-                {
-                    products.length > 0 ? (
-                        <div id="cardContainer">
-                            {
-                                products.map((product) => (
-                                        <Card
-                                            id={product.id}
-                                            name={product.name}
-                                            price={product.price}
-                                            oldPrice={product.oldPrice}
-                                            productPic={product.productPic}
-                                            discount={product.disc}
-                                            size={product.size}
-                                            count={product.count}
-                                        />
-                                ))
-                            }
-                        </div>
+                <div id="cardContainer">
+                    {products.length > 0 ? (
+                        products.map((product) => (
+                            <Card
+                                key={product.id} // Add a unique key prop
+                                id={product.id}
+                                name={product.name}
+                                price={product.price}
+                                oldPrice={product.oldPrice}
+                                productPic={product.productPic}
+                                discount={product.disc} // Should this be discount={product.discount}?
+                                size={product.size}
+                                count={product.count} // Should this be amount={product.amount}?
+                            />
+                        ))
                     ) : (
-                        <p>Não há produtos</p>
-                    )
-                }
+                        <span>There are no products available.</span>
+                    )}
+                </div>
             </section>
             <Contact id="contact">
                 <div id="contactContainer">
