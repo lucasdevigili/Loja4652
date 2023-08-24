@@ -1,34 +1,63 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProductBody from "./components/ProductBody";
+import { Container } from "../../components/Product/Index";
 
 function Product() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:8800/products/${id}`)
-            .then((resp) => resp.json())
+            .then((resp) => {
+                if (!resp.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return resp.json();
+            })
             .then((data) => {
                 setProduct(data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setError(err);
+                console.log(err);
+            });
     }, [id]);
 
     return (
-        <>
-            {product ? (
-                <div>
-                    <h2>{product.name}</h2>
-                    <p>Preço: R${product.price}</p>
-                    {product.oldPrice > 0 && (
-                        <p>Preço Antigo: R${product.oldPrice}</p>
+        <Container>
+            {error ? (
+                <p>Erro ao carregar os dados do produto.</p>
+            ) : product ? (
+                <>
+                    <ProductBody
+                        name={product.name}
+                        oldPrice={product.oldPrice}
+                        price={product.price}
+                        description={product.description}
+                        productPic={product.productPic}
+                    />
+                    {product.category === "shirt" && (
+                        <>
+                            <p>Sizes: {product.sizes.map(size => size.size).join(', ')}</p>
+                        </>
                     )}
-                </div>
+                    {product.category === "evento" && (
+                        <>
+                            name={product.name}
+                            oldPrice={product.oldPrice}
+                            price={product.price}
+                            description={product.description}
+                            productPic={product.productPic}
+                        </>
+                    )}
+                </>
             ) : (
                 <p>Carregando...</p>
             )}
-        </>
+        </Container>
     );
 }
 
-export default Product
+export default Product;
