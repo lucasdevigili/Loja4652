@@ -19,9 +19,16 @@ export const Cards = styled.div`
         justify-content: space-between;
     }
 
-    #cardImg, #cardPrice, #cardButton {
+    #cardImg, #cardPrice, #cardButton a {
         display: flex;
+        align-items: center;
         justify-content: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: ${colors.darkBlue};
+        font-family: 'Rubik', sans-serif;
     }
 
     #cardImg {

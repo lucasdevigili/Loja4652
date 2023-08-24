@@ -1,6 +1,6 @@
 import React from "react";
 import './index.css';
-import { Cards } from "../../components/Cards";
+import { Cards } from "../../components/Cards/index";
 import {Link} from "react-router-dom"
 
 function Card({ name, price, oldPrice, id}) {  
@@ -14,12 +14,12 @@ function Card({ name, price, oldPrice, id}) {
                     <div id="price">
                         {
                             oldPrice > 0 ? (
-                                <span className="oldPrice">R${oldPrice}</span>
+                                <span className="oldPrice">R${oldPrice},00</span>
                             ) : (
                                 <span />
                             )
                         }
-                        <p className="price">R${price}</p>
+                        <p className="price">R${price},00</p>
                         <p className="name">{name}</p>
                     </div>
                     <div id="cardButton" >
