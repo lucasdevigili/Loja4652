@@ -10,20 +10,41 @@ export const Container = styled.div`
 
   #container {
     height: 90%;
-    width: 90%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  #img {
+  #left {
     height: 100%;
-    width: 40%;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+  }
+
+  #images {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  #principal {
+    display: flex;
+  }
+
+  #secundary {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
   }
 
   #contents {
     height: 100%;
-    width: 50%;
+    width: 35%;
     display:flex;
     flex-direction: column;
   }
@@ -80,40 +101,51 @@ export const Container = styled.div`
     font-weight: 700;
   }
 
-  // sizes
+  #size {
+    display: flex;
+    gap: 10px;
+  }
 
   #selects {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
   }
 
+  #selectContents {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+  }
+
   #counter {
+    height: 80%;
     display: flex;
     border: 1px solid black;
+    border-radius: 15px;
   }
 
 
   .add, .remove {
-    height: 45px;
-    width: 50px;
+    height: 25px;
+    width: 40px;
     font-family: Rubik;
-    font-size: 33px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     cursor: pointer;
     background-color: transparent;
     border: none;
-
  }
 
  .amount p{
-    height: 45px;
-    width: 50px;
+    height: 25px;
+    width: 40px;
 
     font-family: Rubik;
-    font-size: 33px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     display: flex;
@@ -128,6 +160,7 @@ export const Container = styled.div`
     border: transparent;
     font-size: 20px;
     background-color: ${colors.yellow};
+    border: 2px solid transparent;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -147,7 +180,7 @@ export const Container = styled.div`
 
     .description {
       text-align: justify;
-      font-size: 30px;
+      font-size: 20px;
       font-style: normal;
       font-weight: 400;
     }

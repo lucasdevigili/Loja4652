@@ -6,14 +6,21 @@ import { Carousel } from "../../components/Carousel/Index";
 import Card from "../Catalog/Index";
 import { Contact } from "../../components/Contact/Index";
 import axios from "axios";
+import { Alert } from "../../components/Extra/Alert/Index";
+import robert from "../../img/Robert.png";
 
 function Homepage() {
     const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const productsPerPage = 4; // Number of products to display per page
 
     const getProducts = async () => {
         try {
             const res = await axios.get("http://localhost:8800/products");
-            setProducts(res.data);
+            const eventoProducts = res.data.filter(product => product.category === "evento");
+            const otherProducts = res.data.filter(product => product.category !== "evento");
+            setProducts([...eventoProducts, ...otherProducts]);
         } catch (error) {
             console.log(error);
         }
@@ -22,6 +29,17 @@ function Homepage() {
     useEffect(() => {
         getProducts();
     }, []);
+
+    const totalPages = Math.ceil(products.length / productsPerPage);
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+        }
+    };
+
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const displayedProducts = products.slice(startIndex, startIndex + productsPerPage);
 
     return (
         <>
@@ -53,28 +71,44 @@ function Homepage() {
                         <img src="http://via.placeholder.com/1300x460" alt="" className="imgCarrousel" />
                     </div>
                 </div>
-           </Carousel>
+            </Carousel>
             <section id="catalog">
                 <div id="cardContainer">
-                    {products.length > 0 ? (
-                        products.map((product) => (
+                    {displayedProducts.length > 0 ? (
+                        displayedProducts.map((product) => (
                             <Card
-                                key={product.id} // Add a unique key prop
+                                key={product.id}
                                 id={product.id}
                                 name={product.name}
                                 price={product.price}
                                 oldPrice={product.oldPrice}
                                 productPic={product.productPic}
-                                discount={product.disc} // Should this be discount={product.discount}?
                                 size={product.size}
-                                count={product.count} // Should this be amount={product.amount}?
                             />
                         ))
                     ) : (
-                        <span>There are no products available.</span>
+                        <Alert>
+                            <img name="robert" src={robert} alt="Robert" />
+                            <p>Parece que não achamos nenhum produto no momento...</p>
+                        </Alert>
                     )}
                 </div>
             </section>
+            <div id="buttons">
+                {totalPages > 1 && (
+                    <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index}
+                                className={currentPage === index + 1 ? "active" : ""}
+                                onClick={() => handlePageChange(index + 1)}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
             <Contact id="contact">
                 <div id="contactContainer">
                     <div id="contactTitle">

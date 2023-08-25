@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "../../themes/colors";
 
 export const Size = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Source+Sans+Pro&display=swap');
@@ -8,16 +9,23 @@ export const Size = styled.div`
     }
 
     .size {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50px;
-        background: rgba(0, 0, 0, 0.45);
+        background: ${colors.lightGreen};
+        border: none;
         display:  flex;
         justify-content: center;
         align-items: center;
         font-family: Source Sans Pro;
-        font-size: 25px;
-        font-style: normal;
+        font-size: 20px;
         font-weight: 700;
+        cursor: pointer;
     }
+
+    .size.selected {
+  background-color: ${colors.darkBlue};
+  color: white;
+}
+
 `

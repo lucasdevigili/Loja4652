@@ -5,7 +5,9 @@ export const getProducts = (_, res) => {
 
     db.query(q, (err, products) => {
         if (err) return res.status(500).json({ error: "Database error" });
-
+        if (products.length === 0) {
+            return res.status(404).json({ error: "No products found" });
+        }
         return res.status(200).json(products);
     });
 };
@@ -13,45 +15,74 @@ export const getProducts = (_, res) => {
 export const getProduct = (req, res) => {
     const productId = req.params.id;
     const q = "SELECT * FROM product WHERE id = ?";
-    
+
     db.query(q, [productId], (err, products) => {
         if (err) return res.status(500).json({ error: "Database error" });
 
         if (products.length === 0) {
             return res.status(404).json({ error: "Product not found" });
         }
+        return res.status(200).json(products[0]);
+    });
+};
 
-        const product = products[0];
+export const getEvents = (_, res) => {
+    const q = "SELECT * FROM event_stock";
 
-        if (product.category === "camisa") {
-            const qcamisa = "SELECT * FROM shirt_stock WHERE product_id = ?";
-            
-            db.query(qcamisa, [productId], (err, camisa) => {
-                if (err) return res.status(500).json({ error: "Database error" });
-
-                product.camisa = camisa;
-                return res.status(200).json(product);
-            });
-        } else if (product.category === "evento") {
-    const qEventos = "SELECT * FROM event_stock WHERE product_id = ?";
-    
-    db.query(qEventos, [productId], (err, eventos) => {
+    db.query(q, (err, events) => {
         if (err) return res.status(500).json({ error: "Database error" });
 
-        product.eventos = eventos;
-        return res.status(200).json(product);
-    });
-} else {
-            return res.status(200).json(product);
+        if (events.length === 0) {
+            return res.status(404).json({ error: "No events found" });
         }
+
+        return res.status(200).json(events);
+    });
+};
+
+export const getEvent = (req, res) => {
+    const eventId = req.params.id;
+    const q = "SELECT * FROM event_stock WHERE eventId = ?";
+
+    db.query(q, [eventId], (err, event) => {
+        if (err) return res.status(500).json({ error: "Database error" });
+
+        if (event.length === 0) {
+            return res.status(404).json({ error: "Event not found" });
+        }
+
+        return res.status(200).json(event[0]);
+    });
+};
+
+export const getShirts = (_, res) => {
+    const q = "SELECT * FROM shirt_stock";
+
+    db.query(q, (err, shirt) => {
+        if (err) return res.status(500).json({ error: "Database error" });
+        if (shirt.length === 0) {
+            return res.status(404).json({ error: "No shirt found" });
+        }
+        return res.status(200).json(shirt);
+    });
+};
+
+export const getShirt = (req, res) => {
+    const shirtId = req.params.id;
+    const q = "SELECT * FROM shirt_stock WHERE shirtId = ?";
+
+    db.query(q, [shirtId], (err, shirts) => {
+        if (err) return res.status(500).json({ error: "Database error" });
+        if (shirts.length === 0) {
+            return res.status(404).json({ error: "Shirt not found" });
+        }
+        return res.status(200).json(shirts);
     });
 };
 
 
 export const createProduct = (req, res) => {
     const product = req.body;
-
-    // Assuming the `category` property determines whether it's "camisa" or "evento"
     const qProduct = "INSERT INTO product (`name`, `description`, `oldPrice`, `price`, `productPic`, `discount`, `category`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     db.query(qProduct, [
@@ -62,29 +93,9 @@ export const createProduct = (req, res) => {
         product.productPic,
         product.discount,
         product.category
-    ], (err, result) => {
+    ], (err) => {
         if (err) return res.status(500).json({ error: "Database error" });
 
-        const productId = result.insertId;
-
-        if (product.category === "camisa") {
-            const qcamisa = "INSERT INTO shirt_stock (`product_id`, `size`, `amount`) VALUES (?, ?, ?)";
-
-            db.query(qcamisa, [productId, product.size, product.amount], (err) => {
-                if (err) return res.status(500).json({ error: "Database error" });
-
-                return res.status(201).json({ message: "Product created successfully" });
-            });
-        } else if (product.category === "evento") {
-            const qEventos = "INSERT INTO event_stock (`product_id`, `date`, `vagas`) VALUES (?, ?, ?)";
-
-            db.query(qEventos, [productId, product.date, product.vagas], (err) => {
-                if (err) return res.status(500).json({ error: "Database error" });
-
-                return res.status(201).json({ message: "Product created successfully" });
-            });
-        } else {
-            return res.status(201).json({ message: "Product created successfully" });
-        }
+        return res.status(201).json({ message: "Product created successfully" });
     });
 };

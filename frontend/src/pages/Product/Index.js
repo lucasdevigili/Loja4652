@@ -32,26 +32,14 @@ function Product() {
             ) : product ? (
                 <>
                     <ProductBody
+                        id={product.id}
                         name={product.name}
                         oldPrice={product.oldPrice}
                         price={product.price}
                         description={product.description}
+                        category={product.category}
                         productPic={product.productPic}
                     />
-                    {product.category === "shirt" && (
-                        <>
-                            <p>Sizes: {product.sizes.map(size => size.size).join(', ')}</p>
-                        </>
-                    )}
-                    {product.category === "evento" && (
-                        <>
-                            name={product.name}
-                            oldPrice={product.oldPrice}
-                            price={product.price}
-                            description={product.description}
-                            productPic={product.productPic}
-                        </>
-                    )}
                 </>
             ) : (
                 <p>Carregando...</p>
