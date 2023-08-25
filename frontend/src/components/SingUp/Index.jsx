@@ -21,7 +21,7 @@ export const SignUpContainer = styled.div`
     }
 
     #modalContainer {
-        width: 80%;
+        width: 85%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

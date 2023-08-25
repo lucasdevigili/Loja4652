@@ -2,10 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    
+    justify-content: flex-end;
+    height: 85vh;
 }
 
 #cardContainer {
@@ -14,4 +12,34 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#buttons {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination {
+    height: auto;
+    display: contents;
+}
+
+.pagination button {
+    width: 25px;
+        height: 25px;
+        border-radius: 50px;
+        font-family: Source Sans Pro;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+       
+}
+
+.pagination button.active {
+    background-color: #032B43;
+    color: white;
 }

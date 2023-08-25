@@ -75,7 +75,7 @@ export const Cards = styled.div`
         height: 6vh;
         width: 10vw;
         border-radius: 50px;
-        border: transparent;
+        border: 2px solid transparent;
         font-size: 20px;
         background-color: ${colors.yellow};
         cursor: pointer;

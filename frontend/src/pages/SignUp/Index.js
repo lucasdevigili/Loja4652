@@ -96,7 +96,7 @@ function SignUp() {
     };
 
     if (isSuccess) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/SignIn" />;
     }
 
     return (
