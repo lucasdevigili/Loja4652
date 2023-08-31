@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './index.css';
-import { Navbar } from "../../components/Navbar/Index";
-import { Carousel } from "../../components/Carousel/Index";
-import Card from "../Catalog/Index";
+import { Navbar } from "../../components/Navbar/index";
+import { Carousel } from "../../components/Carousel/index";
+import Card from "../Catalog/index";
 import { Contact } from "../../components/Contact/Index";
 import axios from "axios";
 import { Alert } from "../../components/Extra/Alert/Index";
-import robert from "../../img/Robert.png";
+import robert from "../../img/Robert.png";  
 
 function Homepage() {
     const [products, setProducts] = useState([]);
