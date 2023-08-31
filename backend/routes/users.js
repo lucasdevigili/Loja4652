@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", getUsers);
 
-router.get("/:email", getUserByEmail); // Rota para buscar usuário pelo email
+router.get("/:email", getUserByEmail);
 
 router.post("/", addUser);
 

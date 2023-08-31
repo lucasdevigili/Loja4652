@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import './index.css';
 import { Navbar } from "../../components/Navbar/Index";
 import { Carousel } from "../../components/Carousel/Index";
 import Card from "../Catalog/Index";
 import { Contact } from "../../components/Contact/Index";
 import axios from "axios";
+import Buttons from "./Components/Buttons";
+import Icons from "./Components/IconsUser";
 import { Alert } from "../../components/Extra/Alert/Index";
 import robert from "../../img/Robert.png";
+import Cookies from "js-cookie";
 
 function Homepage() {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const productsPerPage = 8; // Number of products to display per page
+    const productsPerPage = 8;
+
+    const jwtToken = Cookies.get("jwtToken");
 
     const getProducts = async () => {
         try {
@@ -61,8 +65,7 @@ function Homepage() {
                     </ul>
                 </div>
                 <div id="buttons">
-                    <Link to="/SignIn" className="link">Entrar</Link>
-                    <Link to="/SignUp" className="link">Cadastrar</Link>
+                    {jwtToken ? <Icons /> : <Buttons />}
                 </div>
             </Navbar>
             <Carousel>
@@ -73,26 +76,26 @@ function Homepage() {
                 </div>
             </Carousel>
             <section id="catalog">
-                    <div id="cardContainer">
-                        {displayedProducts.length > 0 ? (
-                            displayedProducts.map((product) => (
-                                <Card
-                                    key={product.id}
-                                    id={product.id}
-                                    name={product.name}
-                                    price={product.price}
-                                    oldPrice={product.oldPrice}
-                                    productPic={product.productPic}
-                                    size={product.size}
-                                />
-                            ))
-                        ) : (
-                            <Alert>
-                                <img name="robert" src={robert} alt="Robert" />
-                                <p  className="bigSize">Parece que não achamos nenhum produto no momento...</p>
-                            </Alert>
-                        )}
-                    </div>
+                <div id="cardContainer">
+                    {displayedProducts.length > 0 ? (
+                        displayedProducts.map((product) => (
+                            <Card
+                                key={product.id}
+                                id={product.id}
+                                name={product.name}
+                                price={product.price}
+                                oldPrice={product.oldPrice}
+                                productPic={product.productPic}
+                                size={product.size}
+                            />
+                        ))
+                    ) : (
+                        <Alert>
+                            <img name="robert" src={robert} alt="Robert" />
+                            <p className="bigSize">Parece que não achamos nenhum produto no momento...</p>
+                        </Alert>
+                    )}
+                </div>
             </section>
             <div id="buttons">
                 {totalPages > 1 && (

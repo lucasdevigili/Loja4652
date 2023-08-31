@@ -81,6 +81,17 @@ export const Navbar = styled.div`
     justify-content: center;
 }
 
+.icons{
+    height: 5vh;
+    border: transparent;
+    font-size: 20px;
+    color: #f0f0f0;
+}
+
+.icons:hover{
+    color: ${colors.lightBlack};
+}
+
 #buttons .link:hover {
     color: white;
     background-color: ${colors.lightBlack};

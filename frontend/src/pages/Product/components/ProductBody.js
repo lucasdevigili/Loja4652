@@ -7,7 +7,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 function ProductBody(props) {
     const [amount, setAmount] = useState(1);
-    const [selectedSize, setSelectedSize] = useState(""); // Estado para armazenar o tamanho selecionado
+    const [selectedSize, setSelectedSize] = useState("");
 
     function add() {
         setAmount(prevAmount => prevAmount + 1);
@@ -25,7 +25,7 @@ function ProductBody(props) {
     const category = props.category;
 
     const handleSizeSelect = (size) => {
-        setSelectedSize(size); // Atualiza o tamanho selecionado no estado
+        setSelectedSize(size);
     };
 
     const handleBuyClick = () => {

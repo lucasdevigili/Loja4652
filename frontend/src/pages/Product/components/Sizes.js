@@ -20,7 +20,7 @@ function Sizes(props) {
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
-        props.onSizeSelect(size); // Passa o tamanho selecionado para o componente pai
+        props.onSizeSelect(size);
     };
 
     return (
