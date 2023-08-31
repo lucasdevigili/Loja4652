@@ -46,18 +46,37 @@ export const SignUpContainer = styled.div`
         flex-direction: column
     }
 
-    .inputContainer {
+    #inputContainer {
         margin-bottom: 20px;
-        min-height: 60px; 
-        position: relative;
+       height: 95%; 
+
 }
 
     #formLineOne,
     #formLineTwo,
     #formLineThree,
-    #formLineFour {
+    #formLineFour{
         display: flex;
         justify-content: space-between;
+    }
+
+    #terms  {
+        width: 100%;
+    }
+
+    #termsContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+    }
+
+    .termSpan {
+        color: ${colors.lightBlue};
+        font-family: Rubik;
+    }
+
+    .a {
+        text-decoration: none;
     }
 
     #name,
@@ -106,7 +125,7 @@ export const SignUpContainer = styled.div`
         justify-content: space-evenly;
     }
 
-    #buttons button, a{
+    #buttons button, .cancel{
         height: 6vh;
         width: 16vw;
         border-radius: 50px;
@@ -119,7 +138,7 @@ export const SignUpContainer = styled.div`
         cursor: pointer;
     }
 
-    #buttons button, a{
+    #buttons button, .cancel{
         display: flex;
         align-items: center;
         justify-content: center;

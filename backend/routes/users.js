@@ -1,9 +1,12 @@
+
 import express from "express";
-import { getUsers, addUser} from "../controllers/user.js";
+import { getUsers, getUserByEmail, addUser } from "../controllers/user.js";
 
 const router = express.Router();
 
 router.get("/", getUsers);
+
+router.get("/:email", getUserByEmail); // Rota para buscar usuário pelo email
 
 router.post("/", addUser);
 

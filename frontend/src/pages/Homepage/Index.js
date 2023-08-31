@@ -13,7 +13,7 @@ function Homepage() {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const productsPerPage = 4; // Number of products to display per page
+    const productsPerPage = 8; // Number of products to display per page
 
     const getProducts = async () => {
         try {
@@ -73,26 +73,26 @@ function Homepage() {
                 </div>
             </Carousel>
             <section id="catalog">
-                <div id="cardContainer">
-                    {displayedProducts.length > 0 ? (
-                        displayedProducts.map((product) => (
-                            <Card
-                                key={product.id}
-                                id={product.id}
-                                name={product.name}
-                                price={product.price}
-                                oldPrice={product.oldPrice}
-                                productPic={product.productPic}
-                                size={product.size}
-                            />
-                        ))
-                    ) : (
-                        <Alert>
-                            <img name="robert" src={robert} alt="Robert" />
-                            <p>Parece que não achamos nenhum produto no momento...</p>
-                        </Alert>
-                    )}
-                </div>
+                    <div id="cardContainer">
+                        {displayedProducts.length > 0 ? (
+                            displayedProducts.map((product) => (
+                                <Card
+                                    key={product.id}
+                                    id={product.id}
+                                    name={product.name}
+                                    price={product.price}
+                                    oldPrice={product.oldPrice}
+                                    productPic={product.productPic}
+                                    size={product.size}
+                                />
+                            ))
+                        ) : (
+                            <Alert>
+                                <img name="robert" src={robert} alt="Robert" />
+                                <p  className="bigSize">Parece que não achamos nenhum produto no momento...</p>
+                            </Alert>
+                        )}
+                    </div>
             </section>
             <div id="buttons">
                 {totalPages > 1 && (

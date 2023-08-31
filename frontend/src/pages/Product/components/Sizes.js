@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Size } from "../../../components/Sizes/Index";
+import { Alert } from "../../../components/Extra/Alert/Index";
 
 function Sizes(props) {
     const [sizes, setSizes] = useState([]);
@@ -36,7 +37,9 @@ function Sizes(props) {
                     </Size>
                 ))
             ) : (
-                <p>No sizes available.</p>
+                <Alert>
+                    <p className="smallSize">Não achamos nenhum tamanho no momento</p>
+                </Alert>
             )}
         </div>
     );

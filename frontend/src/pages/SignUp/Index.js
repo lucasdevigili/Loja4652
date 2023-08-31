@@ -9,8 +9,9 @@ import validateCPF from '../../components/Validations/CPFValidator';
 import CELLMask from "../../components/Validations/CELLMask";
 
 function SignUp() {
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [acceptTerms, setAcceptTerms] = useState(false);
 
-    const [isSuccess, setIsSuccess] = useState(false); 
 
     const [errors, setErrors] = useState({
         name: false,
@@ -45,10 +46,14 @@ function SignUp() {
         }
     }, [isSuccess]);
 
+    const handleTermsChange = (e) => {
+        setAcceptTerms(e.target.checked ? "Yes" : "No");
+    };
+
     const handleConfirmClick = async () => {
         const areFieldsValid = name && surname && user_data && email && cellphone && password && confirm;
         setIsValidFields(areFieldsValid && isValidCPF && password === confirm);
-    
+
         setErrors({
             name: !name,
             surname: !surname,
@@ -59,19 +64,22 @@ function SignUp() {
             password: !password,
             confirm: password !== confirm,
         });
-        
+
         if (areFieldsValid && isValidCPF && password === confirm) {
             console.log("Form is valid and can be submitted");
-            const passwordHash = bcrypt . hashSync(password, 8);
-            
+            const passwordHash = bcrypt.hashSync(password, 8);
+
             const formData = {
                 cpf: cpf.replace(/\D/g, ""),
                 name: `${name} ${surname}`,
                 user_data: user_data.replace(/\D/g, ""),
                 email,
                 cellphone: cellphone.replace(/\D/g, ""),
-                password:passwordHash,
+                password: passwordHash,
+                terms: acceptTerms
             };
+
+            console.log(formData);
             try {
                 await axios.post("http://localhost:8800/users", formData)
                     .then(response => {
@@ -107,7 +115,7 @@ function SignUp() {
                         <h1 className="title">Crie sua conta</h1>
                     </div>
                     <form id="form">
-                        <div className="inputContainer">
+                        <div id="inputContainer">
                             <div id="formLineOne">
                                 <div id="name">
                                     <label className="label">Nome:</label>
@@ -118,7 +126,7 @@ function SignUp() {
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                     />
-                                   {errors.name && <span className="span">Insira seu nome</span>}
+                                    {errors.name && <span className="span">Insira seu nome</span>}
                                 </div>
                                 <div id="surname">
                                     <label className="label">Sobrenome:</label>
@@ -198,6 +206,16 @@ function SignUp() {
                             </div>
                         </div>
                     </form>
+                    <div id="terms">
+                        <div id="termsContainer">
+                            <div>
+                                <input type="checkbox" onChange={handleTermsChange} checked={acceptTerms} />
+                            </div>
+                            <div>
+                                <p>Eu aceito os <a href="#" className="a"><span className="termSpan">Termos de Privacidade e Uso</span></a> do site.</p>
+                            </div>
+                        </div>
+                    </div>
                     <div id="buttons">
                         <Link className="cancel" to="/">Cancelar</Link>
                         <button className="confirm" onClick={handleConfirmClick}>Confirmar</button>

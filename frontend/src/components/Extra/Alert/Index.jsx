@@ -9,11 +9,16 @@ export const Alert = styled.div `
 
     img {
         height: auto;
-        width: 40%;
+        width: 60%;
     }
 
-    p {
+    .bigSize {
         font-size: 24px;
+        font-family: Rubik;
+    }
+
+    .smallSize {
+        font-size: 14px;
         font-family: Rubik;
     }
 `
