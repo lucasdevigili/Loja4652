@@ -3,6 +3,7 @@ import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
 import cartRoutes from "./routes/carts.js";
 import addressRoutes from "./routes/addresses.js";
+
 import cors from "cors";
 
 const app = express();

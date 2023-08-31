@@ -3,11 +3,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: 85vh;
+    height: auto;
 }
 
 #cardContainer {
     height: auto;
+    padding-top: 70px;
     gap: 20px;
     display: flex;
     flex-wrap: wrap;
