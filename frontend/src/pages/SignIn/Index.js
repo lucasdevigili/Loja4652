@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { SignInContainer } from "../../components/SignIn/Index";
 import Cookies from "js-cookie";
 import bcrypt from "bcryptjs-react";
+import { v4 as uuidv4 } from 'uuid'
 
 function SignIn() {
     const initialState = { email: '', password: '' };
@@ -39,9 +40,7 @@ function SignIn() {
                         const passwordMatch = await bcrypt.compare(values.password, matchingUser.password);
 
                         if (passwordMatch) {
-                            const timestamp = new Date().getTime();
-                            const secret = "quatromeiacincodoiseomelhordetodos";
-                            const token = `${matchingUser.email}:${timestamp}:${secret}`;
+                            const token = uuidv4();
 
                             if (token) {
                                 Cookies.set("jwtToken", token);
