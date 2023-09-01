@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { Link, useHistory } from "react-router-dom";
 import Sizes from "./Sizes";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 function ProductBody(props) {
     const [amount, setAmount] = useState(1);
-    const [selectedSize, setSelectedSize] = useState(""); // Estado para armazenar o tamanho selecionado
+    const [selectedSize, setSelectedSize] = useState("");
+    const hasToken = Cookies.get("jwtToken") !== undefined; // Obtenha o token do armazenamento local ou de onde você o guarda.
+    const history = useHistory();
 
     function add() {
-        setAmount(prevAmount => prevAmount + 1);
+        setAmount((prevAmount) => prevAmount + 1);
     }
 
     function remove() {
         if (amount > 1) {
-            setAmount(prevAmount => prevAmount - 1);
+            setAmount((prevAmount) => prevAmount - 1);
         }
     }
 
@@ -25,18 +27,34 @@ function ProductBody(props) {
     const category = props.category;
 
     const handleSizeSelect = (size) => {
-        setSelectedSize(size); // Atualiza o tamanho selecionado no estado
+        setSelectedSize(size);
     };
 
     const handleBuyClick = () => {
-        if (category === "shirt") {
-            if (selectedSize) {
-                alert(`Comprando ${amount} itens de tamanho ${selectedSize}`);
-            } else {
-                alert("Selecione um tamanho antes de comprar.");
-            }
+        if (! hasToken) {
+            alert("Você não está logado. Faça o login para comprar.");
+            history.push("/SignIn");
+            return;
         }
+
+        if (category === "shirt" && !selectedSize) {
+            alert("Selecione um tamanho antes de comprar.");
+            return;
+        }
+
+        const productData = {
+            id: props.id,
+            amount,
+        };
+        if (selectedSize) {
+            productData.size = selectedSize;
+        }
+        const existingProducts = JSON.parse(localStorage.getItem("selectedProducts")) || [];
+        existingProducts.push(productData);
+        localStorage.setItem("selectedProducts", JSON.stringify(existingProducts));
+        alert(`Produto adicionado ao carrinho: ${amount} itens${selectedSize ? ` de tamanho ${selectedSize}` : ''}`);
     };
+
     return (
         <div id="container">
             <div id="left">
@@ -45,7 +63,7 @@ function ProductBody(props) {
                 </div>
                 <div id="images">
                     <div id="principal">
-                            <img src="https://via.placeholder.com/460x585" alt="" />
+                        <img src="https://via.placeholder.com/460x585" alt="" />
                     </div>
                     <div id="secundary">
                         <img src="https://via.placeholder.com/236x111" alt="" />

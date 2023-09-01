@@ -32,6 +32,7 @@ export const Container = styled.div`
   }
   
   #principal {
+    height: 100%;
     display: flex;
   }
 

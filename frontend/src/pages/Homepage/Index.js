@@ -17,7 +17,7 @@ function Homepage() {
 
     const hasToken = Cookies.get("jwtToken") !== undefined;
 
-    const productsPerPage = 8; // Number of products to display per page
+    const productsPerPage = 8;
 
     const getProducts = async () => {
         try {
