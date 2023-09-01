@@ -1,3 +1,4 @@
+import { React } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -33,7 +34,7 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
     const [isValidCPF, setIsValidCPF] = useState(true);
-    const [isValidFields, setIsValidFields] = useState(true);
+    const [setIsValidFields] = useState(true);
 
     const handleCPFChange = (maskedCPF) => {
         setCPF(maskedCPF);
@@ -212,7 +213,7 @@ function SignUp() {
                                 <input type="checkbox" onChange={handleTermsChange} checked={acceptTerms} />
                             </div>
                             <div>
-                                <p>Eu aceito os <a href="#" className="a"><span className="termSpan">Termos de Privacidade e Uso</span></a> do site.</p>
+                                <p>Eu aceito os <a href="/" className="a"><span className="termSpan">Termos de Privacidade e Uso</span></a> do site.</p>
                             </div>
                         </div>
                     </div>
