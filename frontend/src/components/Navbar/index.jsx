@@ -75,6 +75,16 @@ export const Navbar = styled.div`
     text-decoration: none;
 }
 
+.userIcon {
+    height: 5vh;
+    width: 5vw;
+    color: #f0f0f0;
+}
+
+.userIcon:hover {
+    color: ${colors.lightBlack};
+}
+
 .link {
     display: flex;
     align-items: center;
