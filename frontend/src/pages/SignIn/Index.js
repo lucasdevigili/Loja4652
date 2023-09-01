@@ -1,12 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { SignInContainer } from "../../components/SignIn/Index";
+import Cookies from "js-cookie";
 import bcrypt from "bcryptjs-react";
 
 function SignIn() {
     const initialState = { email: '', password: '' };
     const [values, setValues] = useState(initialState);
     const [error, setError] = useState(null);
+
+    const history = useHistory();
+
+    useEffect(() => {
+        const jwtToken = Cookies.get("jwtToken");
+        if (jwtToken) {
+            setError("Você já está logado.");
+        }
+    }, []);
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -23,17 +33,22 @@ function SignIn() {
                 const matchingUsers = await response.json();
 
                 if (matchingUsers.length > 0) {
-                    const matchingUser = matchingUsers[0]; // Assuming there's only one matching user
-
-                    console.log("Usuário no banco de dados:", matchingUser);
-                    console.log("Dados inseridos nos inputs:", values);
-                    console.log("Senha do banco ", values.password, " senha inserida ", matchingUser.password);
+                    const matchingUser = matchingUsers[0];
 
                     try {
                         const passwordMatch = await bcrypt.compare(values.password, matchingUser.password);
 
                         if (passwordMatch) {
-                            console.log("Usuário encontrado e senha correta:", matchingUser);
+                            const timestamp = new Date().getTime();
+                            const secret = "quatromeiacincodoiseomelhordetodos";
+                            const token = `${matchingUser.email}:${timestamp}:${secret}`;
+
+                            if (token) {
+                                Cookies.set("jwtToken", token);
+                                history.push("/");
+                            } else {
+                                setError("Token não encontrado");
+                            }
                         } else {
                             setError("Senha incorreta");
                         }
@@ -83,7 +98,7 @@ function SignIn() {
                                 <label className="label">Senha:</label>
                                 <input
                                     type="password"
-                                    name="password" // Verifique se esse atributo está definido como "password"
+                                    name="password"
                                     className="input"
                                     value={values.password}
                                     onChange={onChange}
