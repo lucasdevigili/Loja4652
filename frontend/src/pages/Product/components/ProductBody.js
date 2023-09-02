@@ -59,7 +59,7 @@ function ProductBody(props) {
         <div id="container">
             <div id="left">
                 <div>
-                    <Link to="/"><FontAwesomeIcon icon={faArrowLeft} /></Link>
+                    <Link to="/"><FontAwesomeIcon icon={faArrowLeft} className="arrow"/></Link>
                 </div>
                 <div id="images">
                     <div id="principal">

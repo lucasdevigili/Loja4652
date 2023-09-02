@@ -186,5 +186,13 @@ export const Container = styled.div`
       font-weight: 400;
     }
 
+    .arrow {
+        color: black;
+        font-size: 25px;
+    }
+
+    .arrow:hover {
+        color: #0000007f;
+    };
 
 `

@@ -79,8 +79,6 @@ function SignUp() {
                 password: passwordHash,
                 terms: acceptTerms
             };
-
-            console.log(formData);
             try {
                 await axios.post("http://localhost:8800/users", formData)
                     .then(response => {
